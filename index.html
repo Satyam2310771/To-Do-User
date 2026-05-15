@@ -3,76 +3,176 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>TaskFlow · Login & To-Do List System</title>
+  <meta name="theme-color" content="#1a2a3a">
+  <title>TaskMaster Pro - Smart To-Do List</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-<div class="app-container" id="appRoot">
-  <!-- Authentication Panel (Login / Signup) -->
-  <div id="authPanel" class="auth-panel">
-    <div id="loginFormSection">
-      <h2>Welcome back</h2>
-      <div class="sub">Sign in to manage your tasks</div>
-      <div id="loginError" class="error-msg hidden"></div>
-      <div class="input-group">
-        <label>📧 EMAIL</label>
-        <input type="email" id="loginEmail" placeholder="you@example.com" autocomplete="email">
+  <div class="app-container" id="appRoot">
+    <!-- Authentication Panel -->
+    <div id="authPanel" class="auth-panel">
+      <!-- Login Form -->
+      <div id="loginFormSection">
+        <div class="logo-area">
+          <i class="fas fa-check-circle"></i>
+          <h2>TaskMaster Pro</h2>
+        </div>
+        <div class="sub">Sign in to manage your tasks efficiently</div>
+        <div id="loginError" class="error-msg hidden"></div>
+        
+        <div class="input-group">
+          <label><i class="fas fa-envelope"></i> EMAIL</label>
+          <input type="email" id="loginEmail" placeholder="you@example.com" autocomplete="email">
+        </div>
+        <div class="input-group">
+          <label><i class="fas fa-lock"></i> PASSWORD</label>
+          <input type="password" id="loginPassword" placeholder="••••••••">
+        </div>
+        <button class="primary" id="loginBtn"><i class="fas fa-sign-in-alt"></i> Login →</button>
+        <div class="toggle-link">Don't have an account? <span id="showSignupLink">Create account</span></div>
       </div>
-      <div class="input-group">
-        <label>🔒 PASSWORD</label>
-        <input type="password" id="loginPassword" placeholder="••••••••">
+
+      <!-- Signup Form -->
+      <div id="signupFormSection" class="hidden">
+        <div class="logo-area">
+          <i class="fas fa-user-plus"></i>
+          <h2>Get Started</h2>
+        </div>
+        <div class="sub">Join TaskMaster Pro — it's free</div>
+        <div id="signupError" class="error-msg hidden"></div>
+        
+        <div class="input-group">
+          <label><i class="fas fa-user"></i> USERNAME</label>
+          <input type="text" id="signupName" placeholder="Alex Johnson">
+        </div>
+        <div class="input-group">
+          <label><i class="fas fa-envelope"></i> EMAIL</label>
+          <input type="email" id="signupEmail" placeholder="hello@taskmaster.com">
+        </div>
+        <div class="input-group">
+          <label><i class="fas fa-lock"></i> PASSWORD</label>
+          <input type="password" id="signupPassword" placeholder="min 6 characters">
+        </div>
+        <div class="flex-btns">
+          <button class="primary" id="signupBtn"><i class="fas fa-user-check"></i> Sign up</button>
+          <button class="outline" id="backToLoginBtn"><i class="fas fa-arrow-left"></i> Back</button>
+        </div>
+        <div class="toggle-link">Already have an account? <span id="showLoginFromSignup">Login here</span></div>
       </div>
-      <button class="primary" id="loginBtn" style="width:100%">Login →</button>
-      <div class="toggle-link">Don't have an account? <span id="showSignupLink">Create account</span></div>
     </div>
 
-    <div id="signupFormSection" class="hidden">
-      <h2>Get started</h2>
-      <div class="sub">Join TaskFlow — it's free</div>
-      <div id="signupError" class="error-msg hidden"></div>
-      <div class="input-group">
-        <label>👤 USERNAME</label>
-        <input type="text" id="signupName" placeholder="Alex Johnson">
+    <!-- Main Todo Panel -->
+    <div id="todoPanel" class="todo-panel hidden">
+      <!-- Header -->
+      <div class="todo-header">
+        <div class="welcome-header">
+          <div>
+            <h2><i class="fas fa-tasks"></i> My Tasks</h2>
+            <div class="sub" id="currentDate"></div>
+          </div>
+          <div class="user-actions">
+            <div class="username-badge" id="activeUsername">
+              <i class="fas fa-user-circle"></i> <span>User</span>
+            </div>
+            <button id="themeToggle" class="icon-btn"><i class="fas fa-moon"></i></button>
+          </div>
+        </div>
       </div>
-      <div class="input-group">
-        <label>📧 EMAIL</label>
-        <input type="email" id="signupEmail" placeholder="hello@taskflow.com">
+
+      <!-- Stats Cards -->
+      <div class="stats-container">
+        <div class="stat-card">
+          <i class="fas fa-list-check"></i>
+          <div class="stat-info">
+            <span class="stat-value" id="totalTasks">0</span>
+            <span class="stat-label">Total Tasks</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-check-circle"></i>
+          <div class="stat-info">
+            <span class="stat-value" id="completedTasks">0</span>
+            <span class="stat-label">Completed</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-chart-line"></i>
+          <div class="stat-info">
+            <span class="stat-value" id="progressPercent">0%</span>
+            <span class="stat-label">Progress</span>
+          </div>
+        </div>
       </div>
-      <div class="input-group">
-        <label>🔒 PASSWORD</label>
-        <input type="password" id="signupPassword" placeholder="min 6 characters">
+
+      <!-- Progress Bar -->
+      <div class="progress-section">
+        <div class="progress-bar-container">
+          <div class="progress-bar" id="progressBarFill"></div>
+        </div>
       </div>
-      <div class="flex-btns">
-        <button class="primary" id="signupBtn" style="flex:1">Sign up</button>
-        <button class="outline" id="backToLoginBtn">Back</button>
+
+      <!-- Filters & Search -->
+      <div class="controls-bar">
+        <div class="search-box">
+          <i class="fas fa-search"></i>
+          <input type="text" id="searchTasks" placeholder="Search tasks...">
+        </div>
+        <div class="filter-group">
+          <select id="filterPriority" class="filter-select">
+            <option value="all">All Priorities</option>
+            <option value="high">🔥 High</option>
+            <option value="medium">📘 Medium</option>
+            <option value="low">✅ Low</option>
+          </select>
+          <select id="filterStatus" class="filter-select">
+            <option value="all">All Status</option>
+            <option value="pending">Pending</option>
+            <option value="completed">Completed</option>
+          </select>
+          <select id="sortBy" class="filter-select">
+            <option value="date">Sort by Date</option>
+            <option value="priority">Sort by Priority</option>
+            <option value="alphabetical">Sort A-Z</option>
+          </select>
+        </div>
       </div>
-      <div class="toggle-link">Already have an account? <span id="showLoginFromSignup">Login here</span></div>
+
+      <!-- Add Task Form -->
+      <div class="add-task-area">
+        <input type="text" id="taskInput" placeholder="What needs to be done?">
+        <select id="taskPriority">
+          <option value="low">✅ Low Priority</option>
+          <option value="medium" selected>📘 Medium Priority</option>
+          <option value="high">🔥 High Priority</option>
+        </select>
+        <input type="date" id="taskDueDate">
+        <button class="primary" id="addTaskBtn"><i class="fas fa-plus"></i> Add</button>
+      </div>
+
+      <!-- Tasks List -->
+      <div class="tasks-container">
+        <ul id="taskListContainer" class="task-list"></ul>
+      </div>
+
+      <!-- Bottom Actions -->
+      <div class="bottom-actions">
+        <button id="clearCompletedBtn" class="outline danger">
+          <i class="fas fa-trash-alt"></i> Clear Completed
+        </button>
+        <button id="exportTasksBtn" class="outline">
+          <i class="fas fa-download"></i> Export
+        </button>
+        <button id="logoutBtn" class="outline danger">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+      </div>
     </div>
   </div>
 
-  <!-- To-Do Panel (visible after login) -->
-  <div id="todoPanel" class="todo-panel hidden">
-    <div class="welcome-header">
-      <h2>📋 My Tasks</h2>
-      <div class="username-badge" id="activeUsername">User</div>
-    </div>
-    <div class="sub">Stay organized, one step at a time</div>
+  <!-- Toast Notification Container -->
+  <div id="toastContainer" class="toast-container"></div>
 
-    <div class="add-task-area">
-      <input type="text" id="taskInput" placeholder="Write a new task... e.g., Review design" autocomplete="off">
-      <button class="primary" id="addTaskBtn">+ Add</button>
-    </div>
-
-    <ul id="taskListContainer" class="task-list">
-      <li class="empty-tasks">✨ Your tasks will appear here</li>
-    </ul>
-
-    <div class="flex-btns" style="justify-content: space-between; margin-top: 1rem;">
-      <button id="logoutBtn" class="outline danger">🚪 Logout</button>
-      <button id="clearCompletedBtn" class="outline" style="border-color:#a04e4e;">🗑️ Clear completed</button>
-    </div>
-  </div>
-</div>
+  <script src="script.js"></script>
 </body>
-<script src="/script.js"></script>
 </html>

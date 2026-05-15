@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>TaskFlow · Login & To-Do List System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app-container" id="appRoot">
+  <!-- Authentication Panel (Login / Signup) -->
+  <div id="authPanel" class="auth-panel">
+    <div id="loginFormSection">
+      <h2>Welcome back</h2>
+      <div class="sub">Sign in to manage your tasks</div>
+      <div id="loginError" class="error-msg hidden"></div>
+      <div class="input-group">
+        <label>📧 EMAIL</label>
+        <input type="email" id="loginEmail" placeholder="you@example.com" autocomplete="email">
+      </div>
+      <div class="input-group">
+        <label>🔒 PASSWORD</label>
+        <input type="password" id="loginPassword" placeholder="••••••••">
+      </div>
+      <button class="primary" id="loginBtn" style="width:100%">Login →</button>
+      <div class="toggle-link">Don't have an account? <span id="showSignupLink">Create account</span></div>
+    </div>
+
+    <div id="signupFormSection" class="hidden">
+      <h2>Get started</h2>
+      <div class="sub">Join TaskFlow — it's free</div>
+      <div id="signupError" class="error-msg hidden"></div>
+      <div class="input-group">
+        <label>👤 USERNAME</label>
+        <input type="text" id="signupName" placeholder="Alex Johnson">
+      </div>
+      <div class="input-group">
+        <label>📧 EMAIL</label>
+        <input type="email" id="signupEmail" placeholder="hello@taskflow.com">
+      </div>
+      <div class="input-group">
+        <label>🔒 PASSWORD</label>
+        <input type="password" id="signupPassword" placeholder="min 6 characters">
+      </div>
+      <div class="flex-btns">
+        <button class="primary" id="signupBtn" style="flex:1">Sign up</button>
+        <button class="outline" id="backToLoginBtn">Back</button>
+      </div>
+      <div class="toggle-link">Already have an account? <span id="showLoginFromSignup">Login here</span></div>
+    </div>
+  </div>
+
+  <!-- To-Do Panel (visible after login) -->
+  <div id="todoPanel" class="todo-panel hidden">
+    <div class="welcome-header">
+      <h2>📋 My Tasks</h2>
+      <div class="username-badge" id="activeUsername">User</div>
+    </div>
+    <div class="sub">Stay organized, one step at a time</div>
+
+    <div class="add-task-area">
+      <input type="text" id="taskInput" placeholder="Write a new task... e.g., Review design" autocomplete="off">
+      <button class="primary" id="addTaskBtn">+ Add</button>
+    </div>
+
+    <ul id="taskListContainer" class="task-list">
+      <li class="empty-tasks">✨ Your tasks will appear here</li>
+    </ul>
+
+    <div class="flex-btns" style="justify-content: space-between; margin-top: 1rem;">
+      <button id="logoutBtn" class="outline danger">🚪 Logout</button>
+      <button id="clearCompletedBtn" class="outline" style="border-color:#a04e4e;">🗑️ Clear completed</button>
+    </div>
+  </div>
+</div>
+</body>
+<script src="/script.js"></script>
+</html>

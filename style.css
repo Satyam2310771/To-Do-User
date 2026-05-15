@@ -1,0 +1,275 @@
+   * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, 'Segoe UI', 'Inter', 'Poppins', sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(145deg, #1a2a3a 0%, #0f1a24 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem;
+    }
+
+    /* main glass card container */
+    .app-container {
+      width: 100%;
+      max-width: 700px;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(16px);
+      border-radius: 2.5rem;
+      padding: 1.8rem;
+      box-shadow: 0 25px 45px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1);
+      transition: all 0.2s ease;
+    }
+
+    /* auth panels */
+    .auth-panel, .todo-panel {
+      transition: opacity 0.25s ease, transform 0.2s ease;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    h2 {
+      font-size: 1.9rem;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      background: linear-gradient(135deg, #ffffff, #b9e6ff);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 0.5rem;
+    }
+
+    .sub {
+      color: #9bb8d4;
+      margin-bottom: 1.8rem;
+      font-size: 0.85rem;
+      border-left: 3px solid #4c9aff;
+      padding-left: 0.7rem;
+    }
+
+    .input-group {
+      margin-bottom: 1.2rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #bbd4ff;
+      margin-bottom: 0.3rem;
+    }
+
+    input, textarea {
+      width: 100%;
+      background: rgba(20, 30, 40, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 0.8rem 1rem;
+      border-radius: 1.2rem;
+      font-size: 0.95rem;
+      color: white;
+      outline: none;
+      transition: 0.2s;
+    }
+
+    input:focus, textarea:focus {
+      border-color: #4c9aff;
+      box-shadow: 0 0 0 3px rgba(76, 154, 255, 0.3);
+      background: #1e2f3c;
+    }
+
+    button {
+      background: #2c4f6e;
+      border: none;
+      padding: 0.75rem 1.2rem;
+      border-radius: 2rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: white;
+      cursor: pointer;
+      transition: 0.2s;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    button.primary {
+      background: linear-gradient(95deg, #3b82f6, #2563eb);
+      box-shadow: 0 6px 14px rgba(37, 99, 235, 0.3);
+    }
+
+    button.primary:hover {
+      background: linear-gradient(95deg, #2563eb, #1d4ed8);
+      transform: scale(0.98);
+    }
+
+    button.outline {
+      background: transparent;
+      border: 1px solid #5a7c9c;
+      color: #cbe5ff;
+    }
+
+    button.outline:hover {
+      background: rgba(59, 130, 246, 0.2);
+      border-color: #3b82f6;
+    }
+
+    button.danger {
+      background: #b91c1c80;
+      backdrop-filter: blur(4px);
+    }
+    button.danger:hover {
+      background: #dc2626;
+    }
+
+    .flex-btns {
+      display: flex;
+      gap: 0.8rem;
+      margin-top: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .toggle-link {
+      text-align: center;
+      margin-top: 1.5rem;
+      color: #9ab3cd;
+      font-size: 0.85rem;
+    }
+
+    .toggle-link span {
+      color: #6ea8fe;
+      cursor: pointer;
+      font-weight: 600;
+      text-decoration: underline;
+    }
+
+    .error-msg {
+      color: #ffb4a2;
+      background: #7f1a1a40;
+      padding: 0.5rem 1rem;
+      border-radius: 2rem;
+      font-size: 0.75rem;
+      margin: 0.5rem 0;
+      text-align: center;
+    }
+
+    /* To-Do list styles */
+    .welcome-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .username-badge {
+      background: #2d4a6e;
+      padding: 0.3rem 1rem;
+      border-radius: 2rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #cae9ff;
+    }
+
+    .add-task-area {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin: 1.5rem 0 1.2rem;
+    }
+
+    .add-task-area input {
+      flex: 1;
+      background: #0f1e28;
+    }
+
+    .task-list {
+      list-style: none;
+      margin-top: 1.2rem;
+      max-height: 380px;
+      overflow-y: auto;
+      padding-right: 0.3rem;
+    }
+
+    .task-list li {
+      background: rgba(15, 30, 40, 0.7);
+      backdrop-filter: blur(5px);
+      margin-bottom: 0.7rem;
+      border-radius: 1.5rem;
+      padding: 0.7rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: 0.1s;
+      border: 1px solid rgba(255,255,240,0.08);
+    }
+
+    .task-content {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      flex: 1;
+      word-break: break-word;
+    }
+
+    .task-text {
+      font-size: 0.95rem;
+      color: #eef4ff;
+      transition: 0.1s;
+    }
+
+    .completed .task-text {
+      text-decoration: line-through;
+      opacity: 0.65;
+      color: #a2c2e0;
+    }
+
+    .task-check {
+      width: 1.3rem;
+      height: 1.3rem;
+      accent-color: #3b82f6;
+      cursor: pointer;
+    }
+
+    .task-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .task-actions button {
+      background: #1e3a4d;
+      padding: 0.3rem 0.8rem;
+      font-size: 0.7rem;
+      border-radius: 2rem;
+    }
+
+    .empty-tasks {
+      text-align: center;
+      padding: 2rem;
+      color: #8aaec0;
+      font-style: italic;
+    }
+
+    ::-webkit-scrollbar {
+      width: 5px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #15232e;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #3b6e9e;
+      border-radius: 10px;
+    }
+
+    @media (max-width: 550px) {
+      .app-container { padding: 1.2rem; }
+      .task-content { gap: 0.5rem; }
+    }
+  
